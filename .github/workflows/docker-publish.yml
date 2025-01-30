@@ -28,7 +28,7 @@ jobs:
         working-directory: ./naming-server
         run: mvn spring-boot:build-image -DskipTests
 
-      - name: Build API gateway Container Image
+      - name: Build API Gateway Container Image
         working-directory: ./api-gateway
         run: mvn spring-boot:build-image -DskipTests
 
@@ -39,6 +39,11 @@ jobs:
       - name: Build Book Microservice Jar
         working-directory: ./book-service
         run: mvn clean package -DskipTests
+
+      - name: Docker Setup Compose
+        uses: docker/setup-compose-action@v1.0.0
+        with:
+          version: 'v2.32.4'
 
       - name: Docker Compose Build
         working-directory: ./
